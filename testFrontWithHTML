@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Retorno:</h1>
+    <p id="Retorno1"></p>
+    <textarea id="retorno"></textarea>
+
+    <button id= "btnGdias" onclick="getAllUsers()"> Get all users</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+function getAllUsers(){
+    const response = fetch("https://localhost:7112/api/Users");
+    response
+        .then(x => x.json())
+        .then(lista => {
+            lista.forEach(usuario => {
+                retorno.textContent += ` ${usuario.email}`
+            })
+        })
+}
+
+function getAUsers(){
+    const response = fetch("https://localhost:7112/api/Users");
+    response
+        .then(x => x.json())
+        .then(lista => {
+            lista.forEach(usuario => {
+                retorno.textContent += ` ${usuario}`
+            })
+        })
+}
