@@ -81,8 +81,8 @@ function fetchUsers() {
                 row.insertCell(1).textContent = user.name;
                 row.insertCell(2).textContent = user.email;
                 const actionsCell = row.insertCell(3);
-                actionsCell.innerHTML = `<button onclick="editUser(${user.id})">Edit</button>
-                                         <button onclick="deleteUser(${user.id})">Delete</button>`;
+                actionsCell.innerHTML = `<button onclick="editUser(${user.id})" class="btn btn-outline-warning">Edit</button>
+                                         <button onclick="deleteUser(${user.id})" class="btn btn-outline-danger">Delete</button>`;
             });
         })
         .catch(error => console.error('Error fetching users:', error));
