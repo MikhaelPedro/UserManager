@@ -109,3 +109,37 @@ async function getOneUser(idUser) {
     }
 }
 
+
+
+
+async function updateUser(idUser, updatedData) {
+    try {
+        const response = await fetch("https://localhost:7112/api/Users/" + idUser, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const updatedUser = await response.json();
+        console.log(updatedUser);
+        // Aqui você pode manipular os dados do usuário atualizado como desejar
+        // Por exemplo, exibir uma mensagem de sucesso
+        document.getElementById('retorno').textContent = `Usuário atualizado: ${updatedUser.name}`;
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
+}
+
+
+
+const updatedData = {
+    name: 'Novo Nome',
+    email: 'novoemail@example.com'
+    // Adicione outros campos que deseja atualizar
+};
+
+updateUser(1, updatedData);
