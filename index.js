@@ -14,7 +14,7 @@ function fetchUsers() {
                 row.insertCell(2).textContent = user.email;
                 row.insertCell(3).textContent = user.age;
                 const actionsCell = row.insertCell(4);
-                actionsCell.innerHTML = `<button onclick="editUser(${user.id})" class="btn btn-outline-warning">Edit</button>
+                actionsCell.innerHTML = `<button onclick="updateUser(${user.id}); " class="btn btn-outline-warning">Edit</button>
                 <button onclick="deleteUser(${user.id})" class="btn btn-outline-danger">Delete</button>`;
             });
         })
@@ -39,6 +39,7 @@ function getAllUsers(){
 }
 
 async function getOneUser(idUser) {
+    
     try {
         const response = await fetch("https://localhost:7112/api/Users/" + idUser);
         if (!response.ok) {
@@ -48,7 +49,9 @@ async function getOneUser(idUser) {
         console.log(user);
         // Aqui você pode manipular os dados do usuário como desejar
         // Por exemplo, exibir o nome do usuário em um elemento HTML
-        document.getElementById('retorno').textContent = user.name;
+        document.getElementById('#userName').innerText = user.name;
+        document.getElementById('#userEmail').innerText = user.email;
+        document.getElementById('#userAge').innerText = user.age;
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
