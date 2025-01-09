@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>User Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
 </head>
@@ -36,7 +37,7 @@
               <button id="btnGdias" class="btn btn-primary flex-grow-1" onclick="getAllUsers()">Get all users</button>
             </div>  
             <div class="col-md-4 d-flex flex-column">
-              <button id="btnSelectOne" class="btn btn-secondary flex-grow-1" onclick="getOneUser(1)">Get one user</button>
+              <button id="btnSelectOne" class="btn btn-secondary flex-grow-1" onclick="getOneUser(1); $('#userModal').modal('show');">Get one user</button>
             </div>  
           </div>
         </div>
@@ -46,26 +47,26 @@
 
 
     <div class="container mt-5">
-        <h1>Minha Página com Modal</h1>
-        <p>Exemplo de um modal básico para sua página.</p>
-
         <!-- Botão para abrir o modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">
             Abrir Modal
         </button>
     </div>
 
     <!-- Estrutura do Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- Cabeçalho do Modal -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Título do Modal</h5>
+                    <h5 class="modal-title" id="userModalLabel">Título do Modal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- Corpo do Modal -->
                 <div class="modal-body">
+                    <p id="#userName">a</p>
+                    <p id="#userEmail"></p>
+                    <p id="#userAge"></p>
                     Este é o conteúdo do modal. Você pode personalizar como quiser!
                 </div>
                 <!-- Rodapé do Modal -->
@@ -79,9 +80,5 @@
 
     <!-- Bootstrap JS (com Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-
-
 </body>
 </html>
