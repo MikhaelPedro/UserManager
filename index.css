@@ -1,0 +1,31 @@
+body {
+    background-color: #f0f0f0; /* Light grey background color */
+    background: linear-gradient(135deg, #f0f0f0 25%, #d9d9d9 25%, #d9d9d9 50%, #f0f0f0 50%, #f0f0f0 75%, #d9d9d9 75%, #d9d9d9 100%);
+    background-size: 56.57px 56.57px; /* Size of the pattern */
+  }
+
+  .inputModal {
+    margin: 10px;
+  }
+
+
+   table { 
+    border-spacing: 1; 
+    border-collapse: collapse; 
+    background:white;
+    border-radius:6px;
+    overflow:hidden;
+    max-width:800px; 
+    width:100%;
+    margin:0 auto;
+    position:relative;
+   }
+    *               { position:relative }
+    
+    td,th           { padding-left:8px}
+  
+    thead tr        { 
+      height:60px;
+      background:#FFED86;
+      font-size:16px;
+    }
