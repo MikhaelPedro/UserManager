@@ -8,8 +8,11 @@ namespace UserApi.Repositories
     {
         private static List<User> _users = new List<User>
         {
-            new User { Id = 1, Name = "John Doe", Email = "john@example.com", Age = 30 },
-            new User { Id = 2, Name = "Jane Smith", Email = "jane@example.com", Age = 25 }
+            new User { Id = 1, Name = "Isabela Siqueira", Email = "isa@gmail.com", Age = 23 },
+            new User { Id = 2, Name = "Mikhael Pedro", Email = "mikha@outlook.com", Age = 24 },
+            new User { Id = 2, Name = "Pedro Silva", Email = "pedro@gmail.com", Age = 20 },
+            new User { Id = 3, Name = "Gustavo Oliveira ", Email = "gustavo@outlook.com", Age = 20 },
+            new User { Id = 4, Name = "Guilherme Dias", Email = "gdias@gmail.com", Age = 25 }
         };
 
         public IEnumerable<User> GetAll() => _users;
