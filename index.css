@@ -4,6 +4,21 @@ body {
     background-size: 56.57px 56.57px; /* Size of the pattern */
   }
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.container h1 {
+    align-self: flex-start;
+}
+  
+.container button {
+    align-self: flex-end;
+    margin-bottom: 10px; /* Optional: Adds some space between the button and the table */
+}
+  
+
 table { 
   border-spacing: 1; 
   border-collapse: collapse; 
