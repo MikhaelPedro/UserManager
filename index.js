@@ -14,7 +14,7 @@ function fetchUsers() {
                 row.insertCell(2).textContent = user.email;
                 row.insertCell(3).textContent = user.age;
                 const actionsCell = row.insertCell(4);
-                actionsCell.innerHTML = `<button onclick="updateUser(${user.id}); " class="btn btn-outline-warning">Edit</button>
+                actionsCell.innerHTML = `<button onclick="getOneUser(${user.id});$('#userModal').modal('show');" class="btn btn-outline-warning">Edit</button>
                 <button onclick="deleteUser(${user.id})" class="btn btn-outline-danger">Delete</button>`;
             });
         })
@@ -38,8 +38,8 @@ function getAllUsers(){
         })
 }
 
-async function getOneUser(idUser) {
-    
+async function getOneUser(idUser) {    
+    console.log(idUser)
     try {
         const response = await fetch("https://localhost:7112/api/Users/" + idUser);
         if (!response.ok) {
@@ -49,9 +49,10 @@ async function getOneUser(idUser) {
         console.log(user);
         // Aqui você pode manipular os dados do usuário como desejar
         // Por exemplo, exibir o nome do usuário em um elemento HTML
-        document.getElementById('#userName').innerText = user.name;
-        document.getElementById('#userEmail').innerText = user.email;
-        document.getElementById('#userAge').innerText = user.age;
+        document.getElementById('#userID').value = user.id;
+        document.getElementById('#userName').value = user.name;
+        document.getElementById('#userEmail').value = user.email;
+        document.getElementById('#userAge').value = user.age;
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
@@ -60,23 +61,31 @@ async function getOneUser(idUser) {
 
 
 
-async function updateUser(idUser, updatedData) {
+async function updateUser(idUser) {
     try {
-        const response = await fetch("https://localhost:7112/api/Users/" + idUser, {
+        const userUpdated = {
+            id: document.getElementById('#userID').value,
+            name: document.getElementById('#userName').value,
+            email: document.getElementById('#userEmail').value,
+            age: document.getElementById('#userAge').value
+        }
+        console.log(userUpdated);
+        const response = await fetch(`https://localhost:7112/api/Users/${userUpdated.id != null ? 0 : userUpdated.id }` , {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(updatedData)
+            body: JSON.stringify(userUpdated)
         });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        const updatedUser = await response.json();
-        console.log(updatedUser);
-        // Aqui você pode manipular os dados do usuário atualizado como desejar
-        // Por exemplo, exibir uma mensagem de sucesso
-        document.getElementById('retorno').textContent = `Usuário atualizado: ${updatedUser.name}`;
+        // Show the updated User
+        // const updatedUser = await response.json();
+        // console.log(updatedUser);
+
+        fetchUsers();
+        
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
