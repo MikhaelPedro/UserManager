@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,11 +21,10 @@
   </nav> -->
   
 </head>
-</head>
 <body>
     <div class="container mt-5">
         <h1>User Manager</h1>
-        <button type="button" class="btn btn-success" style="display: flex; justify-content: flex-end;">Add User <i class="bi bi-person-add"></i></button>
+        <button type="button" class="btn btn-success" style="display: flex; justify-content: flex-end;" onclick="$('#userModal').modal('show');createOrUpdate();">Add User <i class="bi bi-person-add"></i></button>
         <table id="userTable" class="table table-dark table-striped col-10">
             <thead>
                 <tr>
@@ -54,7 +53,7 @@
                 <!-- Corpo do Modal -->
                 <div class="modal-body">
                     <div class="input-container">
-                        <input id="#userID" style="display: none;">
+                        <input id="#userID" value="0" style="display: none;">
                         <label>Name:</label>
                         <input name="name" type="text" id="#userName" class="inputModal">
                         <label>Email:</label>
@@ -66,7 +65,7 @@
                 <!-- Rodapé do Modal -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" onclick="updateUser();">Salvar mudanças</button>
+                    <button type="button" class="btn btn-primary" onclick="createOrUpdate();">Salvar mudanças</button>
                 </div>
             </div>
         </div>

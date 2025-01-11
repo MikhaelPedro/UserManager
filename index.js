@@ -21,12 +21,6 @@ function fetchUsers() {
         .catch(error => console.error('Error fetching users:', error));
 }
 
-function editUser(userId) {
-    // Implement edit functionality
-    console.log('Edit user:', userId);
-}
-
-
 function getAllUsers(){
     const response = fetch("https://localhost:7112/api/Users");
     response
@@ -47,8 +41,7 @@ async function getOneUser(idUser) {
         }
         const user = await response.json();
         console.log(user);
-        // Aqui você pode manipular os dados do usuário como desejar
-        // Por exemplo, exibir o nome do usuário em um elemento HTML
+
         document.getElementById('#userID').value = user.id;
         document.getElementById('#userName').value = user.name;
         document.getElementById('#userEmail').value = user.email;
@@ -58,19 +51,25 @@ async function getOneUser(idUser) {
     }
 }
 
-
+function createOrUpdate() {
+    let idUser =  document.getElementById('#userID').value
+    if (!!idUser)
+        updateUser(idUser);
+    else
+        createUser();
+}
 
 
 async function updateUser(idUser) {
     try {
         const userUpdated = {
-            id: document.getElementById('#userID').value,
+            id: idUser,
             name: document.getElementById('#userName').value,
             email: document.getElementById('#userEmail').value,
             age: document.getElementById('#userAge').value
         }
         console.log(userUpdated);
-        const response = await fetch(`https://localhost:7112/api/Users/${userUpdated.id != null ? 0 : userUpdated.id }` , {
+        const response = await fetch(`https://localhost:7112/api/Users/${userUpdated}` , {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,19 +79,19 @@ async function updateUser(idUser) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        // Show the updated User
-        // const updatedUser = await response.json();
-        // console.log(updatedUser);
-
-        fetchUsers();
         
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
 }
 
-async function createUser(newUser) {
+async function createUser() {
     try {
+        const newUser = {
+            name: document.getElementById('#userName').value,
+            email: document.getElementById('#userEmail').value,
+            age: document.getElementById('#userAge').value
+        }
         const response = await fetch("https://localhost:7112/api/Users", {
             method: 'POST',
             headers: {
@@ -105,9 +104,7 @@ async function createUser(newUser) {
         }
         const createdUser = await response.json();
         console.log(createdUser);
-        // Aqui você pode manipular os dados do usuário criado como desejar
-        // Por exemplo, exibir uma mensagem de sucesso
-        document.getElementById('retorno').textContent = `Usuário criado: ${createdUser.name}`;
+
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
@@ -122,20 +119,8 @@ async function deleteUser(idUser) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        console.log(`Usuário com ID ${idUser} foi excluído.`);
-        // Aqui você pode manipular a resposta como desejar
-        // Por exemplo, exibir uma mensagem de sucesso
-        document.getElementById('retorno').textContent = `Usuário com ID ${idUser} foi excluído.`;
+        console.log(`Usuário com ID ${idUser} foi excluído.`);    
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
 }
-
-
-const updatedData = {
-    name: 'Novo Nome',
-    email: 'novoemail@example.com'
-    // Adicione outros campos que deseja atualizar
-};
-
-updateUser(1, updatedData);
